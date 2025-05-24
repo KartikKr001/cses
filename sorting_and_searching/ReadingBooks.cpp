@@ -1,0 +1,55 @@
+#define pp pair<ll,ll>
+#define ll long long int
+#include <bits/stdc++.h>
+#define MOD 1000000007
+using namespace std;
+ll expo(ll a, ll b, ll mod) {ll res = 1; while (b > 0) {if (b & 1)res = (res * a) % mod; a = (a * a) % mod; b = b >> 1;} return res;}
+ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
+ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
+ll mod_mul(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a * b) % m) + m) % m;}
+ll mminvprime(ll a, ll b) {return expo(a, b - 2, b);}
+ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  
+map<ll, ll> prime_factorization(int x) { int i = 2; map<ll, ll> mp; while (i * i <= x) { while (x % i == 0) { mp[i]++; x /= i; } i++; } if (x > 1) mp[x]++; return mp;}
+vector<bool> sieve(int max_val) {
+    vector<bool> is_prime(max_val + 1, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int i = 2; i * i <= max_val; i++) {
+        if (is_prime[i]) {
+            for (int j = i * i; j <= max_val; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    return is_prime;
+}
+int main() {
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(NULL);
+    // cout.tie(NULL);
+    // ll t;
+    // cin >> t;
+    // while (t--) {
+        ll n,tar;
+        cin>>n>>tar;
+        vector<ll> v(n);
+        for(int i=0;i<n;i++) cin>>v[i];
+        multiset<ll>st(v.begin(),v.end());
+        ll cnt = 0;
+        while(st.size() > 0){
+            ll x = *st.rbegin();
+            ll rem = tar-x;
+            st.erase(st.find(x));
+            auto ptr = st.upper_bound(rem);
+            if(ptr == st.begin()){
+                cnt++;
+                continue;
+            }
+            ptr--;
+            st.erase(st.find(*ptr));
+            cnt++;
+        }
+        cout<<cnt<<endl;
+        
+    // }
+    return 0;
+}
