@@ -65,7 +65,6 @@ int main() {
     cout.tie(NULL);
     ll t;
     t = 1;
-
     // Sample State of making hashState (3 integers,2 bool)
     // using MyState = State<int,int,int,bool,bool>;
 
@@ -74,28 +73,35 @@ int main() {
     // MyState s2(2, 15, 30, false, true);
     // dp[s1] = 100;    -> (state:hash)
     // dp[s2] = 200;
+
     while (t--) {
         ll n;
         cin>>n;
-        while(n--){
-            ll x,y;
-            cin>>x>>y;
-            ll sq = max(x,y);
-            ll mina = sq*sq - sq - sq + 2;
-            ll maxa = sq*sq;
-
-            if(x >= y){
-                if(x % 2){
-                    cout<<mina+y-1<<endl;
+        vector<vector<ll>>v(n,vector<ll>(n,-1));
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                set<ll>st;
+                for(int k=i-1;k>=0;k--){
+                    st.insert(v[k][j]);
                 }
-                else cout<<maxa-y+1<<endl;
-            }
-            else{
-                if(y % 2){
-                    cout<<maxa-x+1<<endl;
+                for(int k=j-1;k>=0;k--){
+                    st.insert(v[i][k]);
                 }
-                else cout<<mina+x-1<<endl;
+                int cnt = 0;
+                for(auto x:st){
+                    if(x == cnt){
+                        cnt++;
+                    }
+                    else break;
+                }
+                v[i][j] = cnt;
             }
+        }
+        for(auto x:v){
+            for(auto y:x){
+                cout<<y<<" ";
+            }
+            cout<<endl;
         }
     }
     return 0;
