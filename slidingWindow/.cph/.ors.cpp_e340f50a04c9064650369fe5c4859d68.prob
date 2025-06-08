@@ -1,0 +1,1 @@
+{"name":"Local: ors","url":"d:\\work\\coding\\cses\\slidingWindow\\ors.cpp","tests":[{"id":1749370400897,"input":"8 5\n3 7 1 11","output":"3 0 1 8 2 4 7 6"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\work\\coding\\cses\\slidingWindow\\ors.cpp","group":"local","local":true}

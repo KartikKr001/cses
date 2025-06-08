@@ -1,4 +1,3 @@
-#pragma GCC target("popcnt")
 #define pp pair<ll,ll>
 #define ll long long int
 #include <bits/stdc++.h>
@@ -65,7 +64,8 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     ll t;
-    t=1;
+    cin >> t;
+
     // Sample State of making hashState (3 integers,2 bool)
     // using MyState = State<int,int,int,bool,bool>;
 
@@ -74,40 +74,13 @@ int main() {
     // MyState s2(2, 15, 30, false, true);
     // dp[s1] = 100;    -> (state:hash)
     // dp[s2] = 200;
+
     while (t--) {
-        ll n,k;
-        ll a,b,x,c;
-        cin>>n>>k;
-        cin>>x>>a>>b>>c;
+        ll n;
+        cin>>n;
         vector<ll> v(n);
-        v[0] = x;
-        for(int i=1;i<n;i++){
-            v[i] = (a*v[i-1] + b) % c;
-        }
-        vector<ll>freq(32,0);
-        ll ans = 0;
-        for(int i=0;i<n;i++){
-            for(int j=31;j>=0;j--){
-                if((v[i]&(1LL<<j)) > 0){
-                    freq[31-j]++;
-                }
-            }
-            ll nums = 0;
-            if(i >= k-1){
-                for(ll j=0;j<32;j++){
-                    if(freq[j] > 0){
-                        nums |= (1<<(31-j));
-                    }
-                }
-                ans ^= nums;
-                for(int j=31;j>=0;j--){
-                    if((v[i-k+1]&(1LL<<j)) > 0){
-                        freq[31-j]--;
-                    }
-                }
-            }
-        }
-        cout<<ans<<endl;
+        for(int i=0;i<n;i++) cin>>v[i];
+        
     }
     return 0;
 }
