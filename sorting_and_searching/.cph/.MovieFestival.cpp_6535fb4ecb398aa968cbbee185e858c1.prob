@@ -1,0 +1,1 @@
+{"name":"Local: MovieFestival","url":"d:\\work\\coding\\cses\\sorting_and_searching\\MovieFestival.cpp","tests":[{"id":1749454977698,"input":"3\n3 5\n4 9\n5 8","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\work\\coding\\cses\\sorting_and_searching\\MovieFestival.cpp","group":"local","local":true}
