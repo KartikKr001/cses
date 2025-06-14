@@ -83,10 +83,15 @@ int main() {
         for(int i=0;i<n;i++) cin>>v[i].first>>v[i].second;
 
         sort(v.begin(),v.end(),cmp);
-        for(auto x:v){
-            ll a=x.first,b=x.second;
-            cout<<a<<" "<<b<<endl;
+        ll last = 0;
+        ll cnt = 0;
+        for(int i=0;i<n;i++){
+            if(v[i].first >= last){
+                last = v[i].second;
+                cnt++;
+            }
         }    
+        cout<<cnt<<endl;
     }
     return 0;
 }
